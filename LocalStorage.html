@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body style="background-color: azure;">
+    <p style="text-align: center;font-size: 50px;font-weight: bold;">LocalStorage</p>
+  <div style="display: flex; justify-content: space-around;">
+  <div style="display: flex">
+    <div style="border: solid 1px; text-align: center; padding: 10px;background-color: beige;">
+      <p>ID</p>
+      <input placeholder="id" id="id" type="number" name="id" min="1"/>
+      <p>Name</p>
+      <input placeholder="Name" id="name" type="text" name="name" />
+    </div>
+    <br />
+    <br />
+    <button id="button" onclick="addBtn()" style="background-color: rgb(206, 155, 255);cursor: pointer;color: rgb(255, 255, 255);font-weight: 600;">Add</button>
+    </div>
+  <div style="display: flex;justify-content: space-around;">
+    <div style="border: solid 1px; text-align: center; padding: 10px;background-color: beige">
+      <p>Delete by ID</p>
+      <input placeholder="id" id="idrmv" type="number" name="idrmv" min="1"/>
+    </div>
+    <br />
+    <br />
+    <button id="button" onclick="rmvBtn()" style="background-color: rgba(255, 0, 0, 0.511);cursor: pointer;color: rgb(255, 255, 255); font-weight: 600;">Remove</button>
+  </div>
+</div>
+<p style="text-align: center;margin-top: 5%;">
+
+  <button id="button" onclick="clrAllBtn()" style="background-color: rgba(165, 255, 151, 0.511);cursor: pointer;color: rgb(255, 0, 0); font-weight: 600;padding: 1%;">ClearAll</button>
+</p>
+<div id="data">
+</div>
+    <script>
+      // var item1 = { id: 1, name: "a" };
+      // localStorage.setItem("item1", JSON.stringify(item1));
+      // var item2 = { id: 2, name: "aayush" };
+      // localStorage.setItem("item2", JSON.stringify(item2));
+      // // var item1 = localStorage.getItem("item1");
+      // // console.log("item1:", JSON.parse(item1));
+      // // var x = window.prompt("enter id: ");
+      // // var y = window.prompt("enter name: ");
+      
+      // // var item1 = localStorage.getItem("item2");
+      // // console.log("item2:", JSON.parse(item1));
+      // // localStorage.setItem("items", JSON.stringify(x));
+      // document.getElementById("data").innerHTML=localStorage.length
+      // for (i=0;i<localStorage.length;i++){
+      //   var arr=[]
+      //   arr[i]=localStorage.getItem(localStorage.key(i))
+      // }
+      // document.getElementById("data").innerHTML=JSON.stringify(localStorage)
+      // var tag = document.createElement("p")
+      // var text = document.createTextNode("hello");
+      // tag.appendChild(text);
+      // var element = document.getElementById("data")
+      // element.appendChild('tag')
+      // var tag = document.createElement("p");
+      // var text = document.createTextNode(JSON.stringify(localStorage));
+      // tag.appendChild(text);
+      // var element = document.getElementById("data");
+      // element.appendChild(tag);
+      // document.getElementById("data").innerHTML=JSON.stringify(localStorage)
+      var count = 0
+      function addBtn() {
+        console.log('AddButtonClicked')
+        var x = document.getElementById("id")
+        var y = document.getElementById("name")
+        if (x.value && y.value){
+          localStorage.setItem(String(x.value), JSON.stringify({ id: x.value, name: y.value }));
+          // var tag = document.createElement("p");
+          // var text = document.createTextNode(JSON.stringify(localStorage.getItem(localStorage.key(count))));
+          // tag.appendChild(text);
+          // var element = document.getElementById("data");
+          // element.appendChild(tag);
+          // count+=1
+        }
+        else{
+          console.log('emptyFieldsInAdd')
+        }
+        x.value = ''
+        y.value = ''
+      }
+      function rmvBtn() {
+        console.log('RemoveButtonClicked')
+        var x = document.getElementById("idrmv")
+        if (x.value){
+          localStorage.removeItem(String(x.value));
+          // document.getElementById("data").innerHTML=JSON.stringify(localStorage)
+
+        }
+        else{
+          console.log('emptyFieldsInRemove')
+        }
+        x.value = ''
+      }
+      function clrAllBtn() {
+        console.log('ClearButtonClicked')
+        var flag = window.confirm("Are You Sure To Clear the Local Storage?")
+        if (flag===true){
+          localStorage.clear()
+          console.log("LocalStorage is Cleared")
+          // document.getElementById("data").innerHTML=JSON.stringify(localStorage)
+        }
+        else{
+          console.log("Denied")
+        }
+        }
+    </script>
+  </div>
+</html>
